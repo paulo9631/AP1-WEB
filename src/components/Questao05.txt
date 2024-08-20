@@ -1,0 +1,87 @@
+Questão 05 - Explicação sobre Context API e Props Drilling
+
+O que é Props Drilling?
+
+Props drilling acontece quando você precisa passar dados de um componente pai para um componente muito abaixo na árvore de componentes, 
+passando por vários componentes intermediários. Isso pode ser complicado e confuso, especialmente se muitos componentes intermediários 
+não precisam desses dados, apenas os transmitem adiante.
+
+Como o Context API Ajuda?
+
+O Context API do React é uma forma de compartilhar dados entre componentes sem a necessidade de passar props manualmente por cada nível 
+da árvore. Isso simplifica o código e evita a necessidade de passar dados por todos os componentes intermediários.
+
+Exemplo Prático:
+
+Imagine que você tem um componente App com um estado que precisa ser acessado em um componente Profile, 
+que está vários níveis abaixo na árvore.
+
+Sem Context API (Com Props Drilling):
+
+function App() {
+    const user = { name: 'Paulo', age: 20 };
+    return <Dashboard user={user} />;
+}
+
+// Dashboard.js
+function Dashboard({ user }) {
+    return <Sidebar user={user} />;
+}
+
+// Sidebar.js
+function Sidebar({ user }) {
+    return <Profile user={user} />;
+}
+
+// Profile.js
+function Profile({ user }) {
+    return (
+        <div>
+            <h1>{user.name}</h1>
+            <p>Age: {user.age}</p>
+        </div>
+    );
+}
+
+Nesse exemplo, você está passando o user de App para Profile, 
+mas os componentes Dashboard e Sidebar não precisam dessa prop, apenas passam adiante.
+
+Com Context API (Sem Props Drilling):
+
+import React, { createContext, useContext } from 'react';
+
+// Criando o Contexto
+const UserContext = createContext();
+
+function App() {
+    const user = { name: 'Paulo', age: 20 };
+
+    return (
+        <UserContext.Provider value={user}>
+            <Dashboard />
+        </UserContext.Provider>
+    );
+}
+
+function Dashboard() {
+    return <Sidebar />;
+}
+
+function Sidebar() {
+    return <Profile />;
+}
+
+function Profile() {
+    const user = useContext(UserContext); // Usando o Context diretamente
+
+    return (
+        <div>
+            <h1>{user.name}</h1>
+            <p>Age: {user.age}</p>
+        </div>
+    );
+}
+
+
+Aqui, Profile pode acessar diretamente o user do UserContext, sem precisar que os componentes 
+intermediários (Dashboard e Sidebar) o recebam e o passem adiante. Isso torna o código mais limpo e fácil de manter.

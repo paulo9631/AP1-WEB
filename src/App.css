@@ -1,38 +1,89 @@
+/* src/App.css */
+
+/* Define uma cor de fundo suave para a página */
+body {
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Centraliza o conteúdo da aplicação e define uma largura máxima */
 .App {
-  text-align: center;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Estiliza os títulos das questões */
+h1 {
+  font-size: 1.5em;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Estiliza os parágrafos que exibem os resultados */
+p {
+  font-size: 1.2em;
+  color: #555;
+  margin: 10px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Estilo básico para o botão na Questão 02 */
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Muda a cor do botão ao passar o mouse */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Centraliza e estiliza as imagens dos Pokémon */
+img {
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 100%;
+}
+
+/* Container centralizado para a imagem e o botão */
+.pokemon-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 20px 0; /* Espaçamento superior e inferior */
+}
+
+button {
+  background-color: #007bff;
   color: white;
+  padding: 10px 15px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Espaçamento entre a imagem e o botão */
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+img {
+  max-width: 100%;
+  height: auto;
 }
